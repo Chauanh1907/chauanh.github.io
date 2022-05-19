@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="../css/pretest3.css">
+</head>
+<body>
+    <img src="../hinhanh/p3_logo.png" alt="logo" class="logo">
+    <nav class="nav">
+        <a href="pretest3.html">HOME</a>
+        <a href="#">ACADEMICS</a> 
+        <a href="#">RESEARCH</a>
+        <a href="#" id="about">About Us</a>
+        <a href="#">LIBRARY</a>
+        <a href="#" onclick="showPopup()">SIGN UP</a>
+        <a href="#">SIGN IN</a>
+    </nav>
+
+    <div class="main">
+        <img class="pic1" src="../hinhanh/p3_pic.PNG" alt="pic1">
+        <img class="pic" src="../hinhanh/p3_pic2.jpg" alt="pic2">
+        <img class="pic" src="../hinhanh/p3_pic3.jpg" alt="pic3">
+        <img class="pic" src="../hinhanh/p3_pic4.jpg" alt="pic4"> 
+    </div>
+    <div class="clear"></div>
+
+    <footer>
+        2019 ABC School. All rights reserved.
+    </footer>
+
+   <div id="myform">
+        <h1>Student Infomation</h1>
+        <hr>
+        <form action="info.html" onsubmit="return showInfo()" class="popup">
+            <table>
+                <tr>
+                    <td class="cl">Name</td>
+                    <td><input type="text" placeholder="as" id="name" required></td>
+                </tr>
+
+                <tr>
+                    <td class="cl">Gender</td>
+                    <td><input type="radio" value="Male" name="gender" class="gender">Male
+                        <input type="radio" value="Female" name="gender" class="gender">Female
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cl">Address</td>
+                    <td><input type="text" placeholder="sdada" id="address"></td>
+                </tr>
+
+                <tr>
+                    <td class="cl">Email</td>
+                    <td><input type="email" id="email" placeholder="sa@yahoo.com" required></td>
+                </tr>
+
+                <tr> 
+                    <td class="cl">Phone</td>
+                    <td><input type="number" id="phone" pattern="[0-9]{10-11}" placeholder="xxx-xxxxx[xxx]" required></td>
+                </tr>
+
+                <tr>
+                    <td class="cl">Qualification</td>
+                    <td>
+                        <select >
+                            <option class="quali" value="Bachelor" selected>Bachelor degree</option>
+                            <option class="quali" value="Master">Master</option>
+                            <option class="quali" value="PhD">PhD</option>
+                            <option class="quali" value="None">None</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="submit"><button class="btn" type="submit" onclick="check()">Submit</button>
+                                    <button class="btn" type="reset">Reset</button>
+                                    <button class="btn" type="button" onclick="closeform()">Close</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+  
+
+
+        <script>
+            function showPopup(){
+                document.getElementById("myform").style.display = "block";
+            }
+            function showInfo(){
+                //
+                var name = document.getElementById("name").value
+
+                //
+                var gender = document.getElementsByClassName("gender")
+                var genderArr = new Array()
+                    for( var i in gender){
+                        if(gender[i].checked)
+                        genderArr.push(gender[i].value)
+                    }
+
+                //
+                var address = document.getElementById("address").value
+
+                //
+                var email = document.getElementById("email").value
+
+                //
+                var phone = document.getElementById("phone").value
+
+                //
+                var quali = document.getElementsByClassName("quali");
+                var qualiArr = new Array();
+                for(var i in quali) {
+                    if(quali[i].selected) {
+                        qualiArr.push(quali[i].value)
+                    }
+                }
+
+
+                if(name.length < 6 || name.length > 30){
+                    alert("Your name must be from 6 - 30 characters");
+                    return false;
+                } else{
+                    localStorage.setItem("name", name);
+                    localStorage.setItem("gender", genderArr);
+                    localStorage.setItem("address", address);
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("phone", phone);
+                    localStorage.setItem("quali", qualiArr);
+                }
+            
+            }
+
+            function closeform(){
+                document.getElementById("myform").style.display = "none";
+            }
+        </script>
+    </div>
+
+
+
+
+</body>
+</html>
